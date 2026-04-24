@@ -1,0 +1,14 @@
+
+---
+description: Quality and release rules for the Aryeo Python client project.
+globs:
+alwaysApply: true
+---
+Before changing CI or release behavior, keep `pyproject.toml`,
+`aryeo/__init__.py`, and the release workflow aligned on versioning.
+
+CI must cover formatting, import order, lint, typing, tests, build, strict docs
+build, and dependency automation.
+
+Use Dependabot as the default dependency automation tool unless the planning
+docs record an intentional exception.

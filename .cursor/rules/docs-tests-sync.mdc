@@ -1,0 +1,14 @@
+
+---
+description: Keep docs, tests, and examples aligned with the Aryeo client surface.
+globs:
+alwaysApply: true
+---
+When scaffolding or changing the client surface, keep `README.md`, `docs/`,
+`examples/`, and `tests/` synchronized with the same commands and supported
+Python versions.
+
+Use pytest with coverage on `aryeo`.
+
+Docs must build with `mkdocs build --strict` before the work is considered
+ready.

@@ -1,0 +1,18 @@
+
+---
+description: Implementation rules for the Aryeo Python API client project.
+globs:
+alwaysApply: true
+---
+Implement runtime code under `./aryeo/` and group endpoints by resource
+or service boundary.
+
+Use Google-style docstrings and thorough type hints for Python files.
+
+Every endpoint or client change must update:
+- tests under `./tests/`
+- docs under `./docs/`
+- examples under `./examples/` when user-facing usage changes
+- the owning planning docs under `docs/planning/aryeo-api-client/`
+
+Do not mark an endpoint complete until code, tests, docs, and status docs land.

@@ -1,0 +1,5 @@
+
+include README.md
+include mkdocs.yml
+recursive-include aryeo py.typed
+recursive-include docs *.md

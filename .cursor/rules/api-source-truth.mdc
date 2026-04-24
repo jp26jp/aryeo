@@ -1,0 +1,18 @@
+
+---
+description: Source-of-truth rules for the Aryeo API client project.
+globs:
+alwaysApply: true
+---
+Before implementing or changing API behavior, read
+`docs/planning/aryeo-api-client/foundation/api-source-of-truth.md` and
+`docs/planning/aryeo-api-client/foundation/source-of-truth-matrix.md`.
+
+Prefer sources in this order:
+1. explicit API docs URL from the user
+2. checked-in `docs/api/`
+3. checked-in OpenAPI or Swagger artifacts
+4. endpoint task docs or backlog notes
+
+If the sources disagree, record the contradiction in the planning tree before
+coding.
