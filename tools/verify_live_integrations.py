@@ -16,6 +16,11 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ENV_FILE = REPO_ROOT / ".env"
 DEFAULT_TOKEN_ENV_VARS = ("ARYEO_API_TOKEN", "ARYEO_API_KEY")
 DEFAULT_PAGE_PARAMS: QueryParams = {"page": 1, "per_page": 1}
+DEFAULT_REGION_PARAMS: QueryParams = {
+    "page": 1,
+    "per_page": 1,
+    "filter[type]": "COUNTRY",
+}
 
 ResultStatus = Literal["passed", "failed", "skipped"]
 
@@ -86,7 +91,7 @@ LIVE_CHECKS: tuple[LiveCheck, ...] = (
         path_argument_env_var="ARYEO_LIVE_ORDER_ITEM_ID",
     ),
     LiveCheck("products", "list", "GET /products", DEFAULT_PAGE_PARAMS),
-    LiveCheck("scheduling", "list_regions", "GET /regions", DEFAULT_PAGE_PARAMS),
+    LiveCheck("scheduling", "list_regions", "GET /regions", DEFAULT_REGION_PARAMS),
     LiveCheck(
         "tags",
         "create_tags",
@@ -420,8 +425,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parse_args(argv)
     load_env_file(args.env_file)
 
-    with build_client(args) as client:
+    client = build_client(args)
+    try:
         results = run_checks(client, LIVE_CHECKS)
+    finally:
+        client.close()
 
     print(format_results(results))
     return exit_code(results, strict=args.strict)

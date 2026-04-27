@@ -1,4 +1,3 @@
-
 """Shared helpers for generated Aryeo resource clients."""
 
 from __future__ import annotations

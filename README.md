@@ -33,11 +33,26 @@ from aryeo import AryeoClient
 
 with AryeoClient.from_env() as client:
     orders = client.orders.list(params={"page": 1, "per_page": 25})
-    listing = client.listings.get("00000000-0000-4000-8000-000000000000")
+    listings = client.listings.list(params={"page": 1, "per_page": 25})
 ```
 
-Set `ARYEO_API_TOKEN` before using protected operations. Public operations can
-be called without a token.
+Set `ARYEO_API_TOKEN` before using protected operations. `ARYEO_API_KEY` is
+also accepted as a fallback for local `.env` files. Public operations can be
+called without a token.
+
+## Live Integration Checks
+
+The repo includes an opt-in live smoke command that loads `.env`, avoids
+printing secrets, and only runs read-only API checks by default:
+
+```bash
+python tools/verify_live_integrations.py
+```
+
+Some resource groups require stable fixture IDs before they can be checked live.
+Set `ARYEO_LIVE_ADDRESS_ID`, `ARYEO_LIVE_ORDER_ITEM_ID`,
+`ARYEO_LIVE_ORDER_ID`, or `ARYEO_LIVE_VIDEO_ID` when you want those
+fixture-based reads or example branches to run.
 
 ## Regenerate
 

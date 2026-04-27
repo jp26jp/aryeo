@@ -1,4 +1,3 @@
-
 """Unit tests for the shared Aryeo base client."""
 
 from __future__ import annotations

@@ -21,6 +21,20 @@ python -m build
 python -m twine check dist/*
 ```
 
+## Live Integrations
+
+Live Aryeo API checks are opt-in because they require credentials and may depend
+on stable fixture IDs:
+
+```bash
+python tools/verify_live_integrations.py
+```
+
+The command loads `.env`, accepts either `ARYEO_API_TOKEN` or `ARYEO_API_KEY`,
+and skips fixture-only checks unless variables such as
+`ARYEO_LIVE_ADDRESS_ID`, `ARYEO_LIVE_ORDER_ITEM_ID`, or `ARYEO_LIVE_VIDEO_ID`
+are present.
+
 ## PyPI Trusted Publishing
 
 GitHub Actions publishes to PyPI through Trusted Publishing with the `pypi`

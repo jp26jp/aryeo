@@ -1,4 +1,3 @@
-
 """Generated resource client for the Videos API tag."""
 
 from __future__ import annotations
@@ -24,9 +23,17 @@ class VideosResource(ResourceClient):
             AryeoAPIError: If the API returns a non-success response.
             AryeoRequestError: If the request fails before completion.
         """
-        return self._request("GET", f"/videos/{video_id}", timeout=timeout, auth_required=True)
+        return self._request(
+            "GET", f"/videos/{video_id}", timeout=timeout, auth_required=True
+        )
 
-    def update(self, video_id: str, *, payload: JSONMapping | None = None, timeout: RequestTimeout = None) -> JSONResponse:
+    def update(
+        self,
+        video_id: str,
+        *,
+        payload: JSONMapping | None = None,
+        timeout: RequestTimeout = None,
+    ) -> JSONResponse:
         """Update video.
 
         Args:
@@ -41,7 +48,13 @@ class VideosResource(ResourceClient):
             AryeoAPIError: If the API returns a non-success response.
             AryeoRequestError: If the request fails before completion.
         """
-        return self._request("PUT", f"/videos/{video_id}", payload=payload, timeout=timeout, auth_required=True)
+        return self._request(
+            "PUT",
+            f"/videos/{video_id}",
+            payload=payload,
+            timeout=timeout,
+            auth_required=True,
+        )
 
     def delete(self, video_id: str, *, timeout: RequestTimeout = None) -> JSONResponse:
         """Delete video.
@@ -57,7 +70,9 @@ class VideosResource(ResourceClient):
             AryeoAPIError: If the API returns a non-success response.
             AryeoRequestError: If the request fails before completion.
         """
-        return self._request("DELETE", f"/videos/{video_id}", timeout=timeout, auth_required=True)
+        return self._request(
+            "DELETE", f"/videos/{video_id}", timeout=timeout, auth_required=True
+        )
 
 
 __all__ = ["VideosResource"]

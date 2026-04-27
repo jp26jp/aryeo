@@ -1,4 +1,3 @@
-
 """Generated resource client for the Notes API tag."""
 
 from __future__ import annotations
@@ -10,7 +9,13 @@ from aryeo.types import JSONMapping, JSONResponse, RequestTimeout
 class NotesResource(ResourceClient):
     """Access notes API operations."""
 
-    def update_order(self, order_id: str, *, payload: JSONMapping | None = None, timeout: RequestTimeout = None) -> JSONResponse:
+    def update_order(
+        self,
+        order_id: str,
+        *,
+        payload: JSONMapping | None = None,
+        timeout: RequestTimeout = None,
+    ) -> JSONResponse:
         """Update order notes.
 
         Args:
@@ -25,7 +30,13 @@ class NotesResource(ResourceClient):
             AryeoAPIError: If the API returns a non-success response.
             AryeoRequestError: If the request fails before completion.
         """
-        return self._request("PUT", f"/orders/{order_id}/notes", payload=payload, timeout=timeout, auth_required=True)
+        return self._request(
+            "PUT",
+            f"/orders/{order_id}/notes",
+            payload=payload,
+            timeout=timeout,
+            auth_required=True,
+        )
 
 
 __all__ = ["NotesResource"]

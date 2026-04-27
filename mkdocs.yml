@@ -65,6 +65,7 @@ nav:
           - Readiness Overview: planning/aryeo-api-client/trackers/readiness-overview.md
           - Endpoint Inventory Readiness: planning/aryeo-api-client/trackers/endpoint-inventory-readiness.md
           - Coverage And Tests Readiness: planning/aryeo-api-client/trackers/coverage-and-tests-readiness.md
+          - Live Integration Readiness: planning/aryeo-api-client/trackers/live-integration-readiness.md
           - Docs Parity Readiness: planning/aryeo-api-client/trackers/docs-parity-readiness.md
           - Workflow Release Readiness: planning/aryeo-api-client/trackers/workflow-release-readiness.md
       - Execution:

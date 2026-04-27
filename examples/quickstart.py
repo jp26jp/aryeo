@@ -1,10 +1,10 @@
-
 """Quickstart example for the Aryeo client."""
 
 from __future__ import annotations
 
-from aryeo import AryeoClient
 from _env import load_example_environment
+
+from aryeo import AryeoClient
 
 
 def main() -> None:

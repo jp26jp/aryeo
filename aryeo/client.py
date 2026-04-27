@@ -1,4 +1,3 @@
-
 """Top-level Aryeo client composed from resource-specific subclients."""
 
 from __future__ import annotations
@@ -14,22 +13,24 @@ from aryeo.base_client import (
     BaseClient,
 )
 from aryeo.exceptions import AryeoConfigurationError
-from aryeo.resources import AddressesResource
-from aryeo.resources import AppointmentsResource
-from aryeo.resources import CompanyUsersResource
-from aryeo.resources import CustomerUsersResource
-from aryeo.resources import DiscountsResource
-from aryeo.resources import ListingsResource
-from aryeo.resources import NotesResource
-from aryeo.resources import OrderFormsResource
-from aryeo.resources import OrderItemsResource
-from aryeo.resources import OrdersResource
-from aryeo.resources import PayrollResource
-from aryeo.resources import ProductsResource
-from aryeo.resources import SchedulingResource
-from aryeo.resources import TagsResource
-from aryeo.resources import TasksResource
-from aryeo.resources import VideosResource
+from aryeo.resources import (
+    AddressesResource,
+    AppointmentsResource,
+    CompanyUsersResource,
+    CustomerUsersResource,
+    DiscountsResource,
+    ListingsResource,
+    NotesResource,
+    OrderFormsResource,
+    OrderItemsResource,
+    OrdersResource,
+    PayrollResource,
+    ProductsResource,
+    SchedulingResource,
+    TagsResource,
+    TasksResource,
+    VideosResource,
+)
 from aryeo.types import RequestTimeout
 
 RESOURCE_NAMES = (
@@ -48,7 +49,7 @@ RESOURCE_NAMES = (
     "scheduling",
     "tags",
     "tasks",
-    "videos"
+    "videos",
 )
 
 
