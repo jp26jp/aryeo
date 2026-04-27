@@ -1,3 +1,4 @@
+
 """Generated resource client for the Tasks API tag."""
 
 from __future__ import annotations
@@ -24,9 +25,7 @@ class TasksResource(ResourceClient):
         """
         return self._request("GET", "/tasks", timeout=timeout, auth_required=True)
 
-    def create(
-        self, *, payload: JSONMapping | None = None, timeout: RequestTimeout = None
-    ) -> JSONResponse:
+    def create(self, *, payload: JSONMapping | None = None, timeout: RequestTimeout = None) -> JSONResponse:
         """Create task.
 
         Args:
@@ -40,9 +39,7 @@ class TasksResource(ResourceClient):
             AryeoAPIError: If the API returns a non-success response.
             AryeoRequestError: If the request fails before completion.
         """
-        return self._request(
-            "POST", "/tasks", payload=payload, timeout=timeout, auth_required=True
-        )
+        return self._request("POST", "/tasks", payload=payload, timeout=timeout, auth_required=True)
 
     def delete(self, task_id: str, *, timeout: RequestTimeout = None) -> JSONResponse:
         """Delete task.
@@ -58,9 +55,7 @@ class TasksResource(ResourceClient):
             AryeoAPIError: If the API returns a non-success response.
             AryeoRequestError: If the request fails before completion.
         """
-        return self._request(
-            "DELETE", f"/tasks/{task_id}", timeout=timeout, auth_required=True
-        )
+        return self._request("DELETE", f"/tasks/{task_id}", timeout=timeout, auth_required=True)
 
     def get(self, task_id: str, *, timeout: RequestTimeout = None) -> JSONResponse:
         """Get task.
@@ -76,17 +71,9 @@ class TasksResource(ResourceClient):
             AryeoAPIError: If the API returns a non-success response.
             AryeoRequestError: If the request fails before completion.
         """
-        return self._request(
-            "GET", f"/tasks/{task_id}", timeout=timeout, auth_required=True
-        )
+        return self._request("GET", f"/tasks/{task_id}", timeout=timeout, auth_required=True)
 
-    def update(
-        self,
-        task_id: str,
-        *,
-        payload: JSONMapping | None = None,
-        timeout: RequestTimeout = None,
-    ) -> JSONResponse:
+    def update(self, task_id: str, *, payload: JSONMapping | None = None, timeout: RequestTimeout = None) -> JSONResponse:
         """Update task.
 
         Args:
@@ -101,21 +88,9 @@ class TasksResource(ResourceClient):
             AryeoAPIError: If the API returns a non-success response.
             AryeoRequestError: If the request fails before completion.
         """
-        return self._request(
-            "PUT",
-            f"/tasks/{task_id}",
-            payload=payload,
-            timeout=timeout,
-            auth_required=True,
-        )
+        return self._request("PUT", f"/tasks/{task_id}", payload=payload, timeout=timeout, auth_required=True)
 
-    def complete(
-        self,
-        task_id: str,
-        *,
-        payload: JSONMapping | None = None,
-        timeout: RequestTimeout = None,
-    ) -> JSONResponse:
+    def complete(self, task_id: str, *, payload: JSONMapping | None = None, timeout: RequestTimeout = None) -> JSONResponse:
         """Complete task.
 
         Args:
@@ -130,21 +105,9 @@ class TasksResource(ResourceClient):
             AryeoAPIError: If the API returns a non-success response.
             AryeoRequestError: If the request fails before completion.
         """
-        return self._request(
-            "PUT",
-            f"/tasks/{task_id}/complete",
-            payload=payload,
-            timeout=timeout,
-            auth_required=True,
-        )
+        return self._request("PUT", f"/tasks/{task_id}/complete", payload=payload, timeout=timeout, auth_required=True)
 
-    def reinstate(
-        self,
-        task_id: str,
-        *,
-        payload: JSONMapping | None = None,
-        timeout: RequestTimeout = None,
-    ) -> JSONResponse:
+    def reinstate(self, task_id: str, *, payload: JSONMapping | None = None, timeout: RequestTimeout = None) -> JSONResponse:
         """Reinstate task.
 
         Args:
@@ -159,13 +122,7 @@ class TasksResource(ResourceClient):
             AryeoAPIError: If the API returns a non-success response.
             AryeoRequestError: If the request fails before completion.
         """
-        return self._request(
-            "PUT",
-            f"/tasks/{task_id}/reinstate",
-            payload=payload,
-            timeout=timeout,
-            auth_required=True,
-        )
+        return self._request("PUT", f"/tasks/{task_id}/reinstate", payload=payload, timeout=timeout, auth_required=True)
 
 
 __all__ = ["TasksResource"]

@@ -1,3 +1,4 @@
+
 """Shared HTTP transport helpers for the Aryeo Python client."""
 
 from __future__ import annotations

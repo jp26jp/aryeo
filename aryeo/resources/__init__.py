@@ -1,3 +1,4 @@
+
 """Generated resource exports for the Aryeo client."""
 
 from aryeo.resources.addresses import AddressesResource
@@ -33,5 +34,5 @@ __all__ = [
     "SchedulingResource",
     "TagsResource",
     "TasksResource",
-    "VideosResource",
+    "VideosResource"
 ]

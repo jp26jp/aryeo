@@ -1,3 +1,4 @@
+
 """Project-specific exception types for the Aryeo client."""
 
 from __future__ import annotations

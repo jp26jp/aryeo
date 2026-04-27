@@ -1,8 +1,9 @@
+
 """Unit tests for the high-level Aryeo client."""
 
 from __future__ import annotations
 
-from aryeo.client import RESOURCE_NAMES, AryeoClient
+from aryeo.client import AryeoClient, RESOURCE_NAMES
 
 
 def test_client_exposes_generated_resources(client_factory: object) -> None:

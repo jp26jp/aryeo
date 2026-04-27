@@ -1,3 +1,4 @@
+
 """Generated resource client for the Company Users API tag."""
 
 from __future__ import annotations
@@ -9,9 +10,7 @@ from aryeo.types import JSONResponse, QueryParams, RequestTimeout
 class CompanyUsersResource(ResourceClient):
     """Access company users API operations."""
 
-    def list_team_members(
-        self, *, params: QueryParams | None = None, timeout: RequestTimeout = None
-    ) -> JSONResponse:
+    def list_team_members(self, *, params: QueryParams | None = None, timeout: RequestTimeout = None) -> JSONResponse:
         """List company team members.
 
         Args:
@@ -25,21 +24,9 @@ class CompanyUsersResource(ResourceClient):
             AryeoAPIError: If the API returns a non-success response.
             AryeoRequestError: If the request fails before completion.
         """
-        return self._request(
-            "GET",
-            "/company-team-members",
-            params=params,
-            timeout=timeout,
-            auth_required=True,
-        )
+        return self._request("GET", "/company-team-members", params=params, timeout=timeout, auth_required=True)
 
-    def get_team_member(
-        self,
-        company_team_member_id: str,
-        *,
-        params: QueryParams | None = None,
-        timeout: RequestTimeout = None,
-    ) -> JSONResponse:
+    def get_team_member(self, company_team_member_id: str, *, params: QueryParams | None = None, timeout: RequestTimeout = None) -> JSONResponse:
         """Get company team member.
 
         Args:
@@ -54,21 +41,9 @@ class CompanyUsersResource(ResourceClient):
             AryeoAPIError: If the API returns a non-success response.
             AryeoRequestError: If the request fails before completion.
         """
-        return self._request(
-            "GET",
-            f"/company-team-members/{company_team_member_id}",
-            params=params,
-            timeout=timeout,
-            auth_required=True,
-        )
+        return self._request("GET", f"/company-team-members/{company_team_member_id}", params=params, timeout=timeout, auth_required=True)
 
-    def list_team_member_events(
-        self,
-        company_team_member_id: str,
-        *,
-        params: QueryParams | None = None,
-        timeout: RequestTimeout = None,
-    ) -> JSONResponse:
+    def list_team_member_events(self, company_team_member_id: str, *, params: QueryParams | None = None, timeout: RequestTimeout = None) -> JSONResponse:
         """List company team member events.
 
         Args:
@@ -83,13 +58,7 @@ class CompanyUsersResource(ResourceClient):
             AryeoAPIError: If the API returns a non-success response.
             AryeoRequestError: If the request fails before completion.
         """
-        return self._request(
-            "GET",
-            f"/company-team-members/{company_team_member_id}/events",
-            params=params,
-            timeout=timeout,
-            auth_required=True,
-        )
+        return self._request("GET", f"/company-team-members/{company_team_member_id}/events", params=params, timeout=timeout, auth_required=True)
 
 
 __all__ = ["CompanyUsersResource"]

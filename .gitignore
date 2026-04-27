@@ -1,15 +1,85 @@
-
+# OS files
 .DS_Store
-.coverage
-.mypy_cache/
-.pytest_cache/
-.ruff_cache/
-.venv/
+.AppleDouble
+.LSOverride
+Thumbs.db
+Desktop.ini
+
+# Local secrets and environment
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+
+# Python bytecode and caches
 __pycache__/
+*.py[cod]
+*$py.class
+.python_history
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.direnv/
+
+# Packaging and build outputs
 build/
 dist/
-htmlcov/
-site/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg
 *.egg-info/
-*.pyc
+*.manifest
+*.spec
+*.whl
+
+# Installer and dependency caches
+.pip-tools-cache/
+.uv-cache/
+
+# Test, coverage, and quality tooling
+.coverage
+.coverage.*
 coverage.xml
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.nox/
+.tox/
+.pyre/
+.pytype/
+dmypy.json
+dmypy.json.*
+
+# Documentation builds
+site/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Logs and local runtime files
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Editor and IDE state
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

@@ -1,3 +1,4 @@
+
 """Quickstart example for the Aryeo client."""
 
 from __future__ import annotations

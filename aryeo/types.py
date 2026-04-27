@@ -1,3 +1,4 @@
+
 """Shared type aliases used by the Aryeo client runtime."""
 
 from __future__ import annotations
