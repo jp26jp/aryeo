@@ -1021,6 +1021,21 @@ python -m build
 python -m twine check dist/*
 ```
 
+## PyPI Trusted Publishing
+
+GitHub Actions publishes to PyPI through Trusted Publishing with the `pypi`
+environment and `id-token: write` permissions, so no long-lived PyPI API token
+is required in GitHub.
+
+Before the first live publish, add a PyPI pending publisher for this repository
+under `https://pypi.org/manage/account/publishing/`.
+
+- Register `release.yml` if you want tag-based publishing from
+  `.github/workflows/release.yml`.
+- Register `unified-deployment.yml` as well if you want the manual publish path
+  in `.github/workflows/unified-deployment.yml` to work.
+- Use the optional environment name `pypi` to match the GitHub workflow jobs.
+
 ## Planning
 
 Treat `docs/planning/{INITIATIVE_SLUG}/` as the checked-in implementation
@@ -2128,7 +2143,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: pypi
     permissions:
+      contents: read
       id-token: write
     steps:
       - uses: actions/checkout@v4
@@ -2144,8 +2161,6 @@ jobs:
       - run: python -m build
       - run: python -m twine check dist/*
       - uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
 """
 
 
@@ -2185,7 +2200,9 @@ jobs:
     needs: validate
     if: ${{ inputs.publish_package }}
     runs-on: ubuntu-latest
+    environment: pypi
     permissions:
+      contents: read
       id-token: write
     steps:
       - uses: actions/checkout@v4
@@ -2197,8 +2214,6 @@ jobs:
       - run: python -m build
       - run: python -m twine check dist/*
       - uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
 """
 
 
@@ -2860,14 +2875,25 @@ def render_workflow_release_readiness() -> str:
         ["CI", "Scaffolded", "`ci.yml` runs quality, tests, docs, and build checks"],
         ["Docs", "Scaffolded", "`docs.yml` builds MkDocs strictly"],
         ["Security", "Scaffolded", "`security-audit.yml` runs `pip-audit`"],
-        ["Release", "Scaffolded", "`release.yml` expects `PYPI_API_TOKEN` secret"],
+        [
+            "Release",
+            "Scaffolded",
+            "`release.yml` uses PyPI Trusted Publishing with the `pypi` environment",
+        ],
         [
             "Unified deployment",
             "Scaffolded",
-            "Manual workflow validates and can publish",
+            (
+                "Manual workflow can publish through Trusted Publishing when its "
+                "workflow file is also registered on PyPI"
+            ),
         ],
         ["Dependabot", "Scaffolded", "Weekly updates for pip and GitHub Actions"],
-        ["Live publication", "Deferred", "Requires GitHub repo wiring and secrets"],
+        [
+            "Live publication",
+            "Deferred",
+            "Requires a PyPI pending publisher before the first trusted release",
+        ],
     ]
     return f"""
 # Workflow Release Readiness
@@ -2900,7 +2926,7 @@ def render_execution_plan() -> str:
         "- Typed request and response models for shared schemas",
         "- Live integration tests against a safe non-production environment",
         "- Richer pagination helpers and higher-level convenience methods",
-        "- Publication and release promotion once the repo is wired to GitHub/PyPI",
+        "- First live trusted release after the matching PyPI publisher is registered",
     ]
     work_queue = [
         "- Replace low-level JSON mappings with typed models where the docs are stable",
@@ -2930,6 +2956,8 @@ def render_execution_plan() -> str:
 
 - Rate limits and live retry guidance are undocumented.
 - Integration validation needs safe credentials and a non-production test target.
+- Trusted Publishing still needs the matching PyPI publisher registration before
+  the first live release.
 
 ## Current Work Queue
 

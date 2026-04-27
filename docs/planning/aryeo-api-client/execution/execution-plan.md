@@ -13,7 +13,7 @@
 - Typed request and response models for shared schemas
 - Live integration tests against a safe non-production environment
 - Richer pagination helpers and higher-level convenience methods
-- Publication and release promotion once the repo is wired to GitHub/PyPI
+- First live trusted release after the matching PyPI publisher is registered
 
 ## Highest-Risk Remaining Surface
 
@@ -24,6 +24,8 @@
 
 - Rate limits and live retry guidance are undocumented.
 - Integration validation needs safe credentials and a non-production test target.
+- Trusted Publishing still needs the matching PyPI publisher registration before
+  the first live release.
 
 ## Current Work Queue
 
