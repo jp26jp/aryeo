@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import pytest
+
 from aryeo.client import AryeoClient, RESOURCE_NAMES
 
 
@@ -16,7 +18,9 @@ def test_client_exposes_generated_resources(client_factory: object) -> None:
         assert hasattr(client, resource_name)
 
 
-def test_client_from_env_reads_standard_variables(monkeypatch: object) -> None:
+def test_client_from_env_reads_standard_variables(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     """The convenience constructor should honor the default env var names."""
 
     monkeypatch.setenv("ARYEO_API_TOKEN", "env-token")
@@ -26,4 +30,20 @@ def test_client_from_env_reads_standard_variables(monkeypatch: object) -> None:
     client = AryeoClient.from_env()
 
     assert client.base_url == "https://example.test/api"
+    client.close()
+
+
+def test_client_from_env_falls_back_to_api_key(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The convenience constructor should accept the common API key env var."""
+
+    monkeypatch.delenv("ARYEO_API_TOKEN", raising=False)
+    monkeypatch.setenv("ARYEO_API_KEY", "key-token")
+
+    client = AryeoClient.from_env()
+
+    assert client._build_headers(auth_required=True)["Authorization"] == (
+        "Bearer key-token"
+    )
     client.close()

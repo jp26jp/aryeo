@@ -4,14 +4,16 @@
 from __future__ import annotations
 
 from aryeo import AryeoClient
+from _env import load_example_environment
 
 
 def main() -> None:
-    """Run a small example against the Aryeo API."""
+    """Run small read-only examples against the Aryeo API."""
 
+    load_example_environment()
     with AryeoClient.from_env() as client:
         client.orders.list(params={"page": 1, "per_page": 5})
-        client.listings.get("00000000-0000-4000-8000-000000000000")
+        client.listings.list(params={"page": 1, "per_page": 5})
 
 
 if __name__ == "__main__":

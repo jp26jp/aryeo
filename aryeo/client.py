@@ -147,8 +147,12 @@ class AryeoClient(BaseClient):
                     f"{timeout_env_var} must be a float if provided."
                 ) from exc
 
+        token = os.getenv(token_env_var)
+        if token is None and token_env_var == "ARYEO_API_TOKEN":
+            token = os.getenv("ARYEO_API_KEY")
+
         return cls(
-            token=os.getenv(token_env_var),
+            token=token,
             base_url=os.getenv(base_url_env_var, DEFAULT_BASE_URL),
             timeout=timeout,
         )

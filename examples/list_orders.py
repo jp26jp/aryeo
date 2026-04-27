@@ -3,15 +3,21 @@
 
 from __future__ import annotations
 
+import os
+
 from aryeo import AryeoClient
+from _env import load_example_environment
 
 
 def main() -> None:
-    """List the first page of orders and fetch a single payment-info record."""
+    """List orders and optionally fetch payment info for a configured order."""
 
+    load_example_environment()
     with AryeoClient.from_env() as client:
         client.orders.list(params={"page": 1, "per_page": 10})
-        client.orders.get_payment_information("00000000-0000-4000-8000-000000000000")
+        order_id = os.getenv("ARYEO_LIVE_ORDER_ID")
+        if order_id:
+            client.orders.get_payment_information(order_id)
 
 
 if __name__ == "__main__":
