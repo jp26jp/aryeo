@@ -103,7 +103,6 @@ nav:
       - development/index.md
       - Contributing: development/contributing.md
       - Planning Guide: development/planning.md
-      - Style Guide: STYLE_GUIDE.md
       - Planning Artifacts:
 
           - Planning Overview: planning/aryeo-api-client/README.md

@@ -2238,7 +2238,6 @@ nav:
       - development/index.md
       - Contributing: development/contributing.md
       - Planning Guide: development/planning.md
-      - Style Guide: STYLE_GUIDE.md
       - Planning Artifacts:
 {planning_nav}
 """
@@ -2436,14 +2435,6 @@ def build_docs_files(
                 "Planning Guide",
                 "Planning docs live under `docs/planning/aryeo-api-client/` and are "
                 "development artifacts, not primary user-facing docs.",
-            ),
-        ),
-        (
-            REPO_ROOT / "docs" / "STYLE_GUIDE.md",
-            render_simple_doc(
-                "Documentation Style Guide",
-                "Use concise task-oriented pages, Google-style docstrings for Python "
-                "API reference, and keep API-contract claims tied to `docs/api/`.",
             ),
         ),
     ]
