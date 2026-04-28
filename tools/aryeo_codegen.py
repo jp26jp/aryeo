@@ -545,7 +545,7 @@ def assign_method_names(operations: list[Operation]) -> None:
 
 
 def build_resource_groups(
-    spec: dict[str, Any]
+    spec: dict[str, Any],
 ) -> tuple[list[ResourceGroup], AuditSummary]:
     """Build resource groups and API audit metadata from the OpenAPI spec."""
 
@@ -3231,6 +3231,14 @@ alwaysApply: true
 ---
 Before changing CI or release behavior, keep `pyproject.toml`,
 `{PACKAGE_NAME}/__init__.py`, and the release workflow aligned on versioning.
+
+When making a change intended to be released, bump the package version in both
+`pyproject.toml` and `{PACKAGE_NAME}/__init__.py` based on semantic versioning:
+- major for breaking public API or behavior changes
+- minor for backwards-compatible features, new endpoints, or expanded public
+  surface
+- patch for bug fixes, documentation, tests, tooling, generated metadata, or
+  other backwards-compatible maintenance
 
 CI and release validation must cover formatting, import order, lint, typing,
 tests, package build, strict docs build, and dependency/security audit.
