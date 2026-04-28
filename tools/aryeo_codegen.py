@@ -1,4 +1,4 @@
-"""Generate the ReZEN-style Aryeo client scaffold.
+"""Generate the Aryeo client scaffold.
 
 The checked-in OpenAPI wrapper at ``docs/api/aryeo.json`` is the only source
 used for endpoint, model, and enum generation. This generator intentionally
@@ -158,7 +158,7 @@ def parse_args() -> argparse.Namespace:
     """
 
     parser = argparse.ArgumentParser(
-        description="Generate the ReZEN-style Aryeo client from docs/api/aryeo.json."
+        description="Generate the Aryeo client from docs/api/aryeo.json."
     )
     parser.add_argument(
         "--force-curated",
@@ -2041,9 +2041,9 @@ def render_readme(resource_groups: list[ResourceGroup], audit: AuditSummary) -> 
 # Aryeo Python Client
 
 Aryeo is a typed Python client for the Aryeo API. The client is generated from
-the checked-in OpenAPI wrapper at `docs/api/aryeo.json` and follows the same
-repository shape used by the ReZEN client: flat resource modules, explicit
-exports, MkDocs documentation, per-resource tests, and release-quality checks.
+the checked-in OpenAPI wrapper at `docs/api/aryeo.json` and uses a
+client-library repository shape: flat resource modules, explicit exports,
+MkDocs documentation, per-resource tests, and release-quality checks.
 
 ## Current Scope
 
@@ -2052,7 +2052,7 @@ exports, MkDocs documentation, per-resource tests, and release-quality checks.
   operations
 - Generated `aryeo/models.py` and `aryeo/enums.py` from the checked-in spec
 - Compatibility exports under `aryeo/resources/`
-- Python `>=3.11` by design, even though ReZEN supports older versions
+- Python `>=3.11` by design
 
 Resource methods intentionally return decoded JSON until each endpoint can be
 confidently mapped to stable request and response models.
@@ -2258,7 +2258,7 @@ Aryeo API contract.
 - {audit.operation_count} operations across {audit.tag_count} resource modules
 - Sync `httpx` transport with bearer-token auth
 - Generated models and enums from `docs/api/aryeo.json`
-- ReZEN-style docs, tests, and release hygiene
+- Client-library docs, tests, and release hygiene
 
 Start with [Quickstart](getting-started/quickstart.md), then browse the
 [API Reference](api-reference/index.md).
@@ -3290,7 +3290,7 @@ def phase_rows() -> list[dict[str, str]]:
             "status": "In Progress",
             "goal": "Publish client-library docs and safe examples.",
             "paths": "docs/, mkdocs.yml, examples/",
-            "acceptance": "Docs use ReZEN-style navigation and strict builds pass.",
+            "acceptance": "Docs use client-library navigation and strict builds pass.",
             "risk": "Users cannot discover the client shape.",
         },
         {
@@ -3510,11 +3510,11 @@ def render_package_versioning_adr() -> str:
 - Version sources of truth: `pyproject.toml` and `{PACKAGE_NAME}/__init__.py`
 - Python support: `>=3.11`
 
-## Intentional Deviations From ReZEN
+## Intentional Project Decisions
 
 - Aryeo keeps Python `>=3.11` to avoid broad syntax and CI refactors in this
   pass.
-- Aryeo keeps `httpx` instead of ReZEN's `requests` transport.
+- Aryeo keeps `httpx` as its sync transport.
 
 ## Follow-Up
 
@@ -3602,7 +3602,7 @@ def render_docs_readiness() -> str:
     """Render docs readiness tracker."""
 
     rows = [
-        ["README", "Present", "Explains ReZEN-style structure and Aryeo deviations"],
+        ["README", "Present", "Explains Aryeo's client-library structure"],
         [
             "MkDocs nav",
             "Present",
@@ -3706,7 +3706,7 @@ def render_bootstrap_plan() -> str:
 
 ## Current Focus
 
-- ReZEN-style package structure, generated models/enums, per-resource tests, and
+- Client-library package structure, generated models/enums, per-resource tests, and
   release hygiene.
 
 ## Ordered Phases
@@ -3785,7 +3785,7 @@ def build_planning_files(
                 "API Client Phase 01 Foundation",
                 [
                     "- Kept `httpx` transport in `aryeo/base_client.py`.",
-                    "- Kept Python `>=3.11` as an intentional ReZEN deviation.",
+                    "- Kept Python `>=3.11` as an intentional project decision.",
                     "- Kept version sources in `pyproject.toml` and `aryeo/__init__.py`.",
                 ],
             ),
@@ -3817,7 +3817,7 @@ def build_planning_files(
             render_phase_doc(
                 "API Client Phase 04 Docs And Examples",
                 [
-                    "- Reworked MkDocs into ReZEN-style navigation.",
+                    "- Reworked MkDocs into client-library navigation.",
                     "- Added API reference pages for every public module.",
                     "- Added safe workflow examples.",
                 ],

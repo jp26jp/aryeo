@@ -9,11 +9,11 @@
 - Version sources of truth: `pyproject.toml` and `aryeo/__init__.py`
 - Python support: `>=3.11`
 
-## Intentional Deviations From ReZEN
+## Intentional Project Decisions
 
 - Aryeo keeps Python `>=3.11` to avoid broad syntax and CI refactors in this
   pass.
-- Aryeo keeps `httpx` instead of ReZEN's `requests` transport.
+- Aryeo keeps `httpx` as its sync transport.
 
 ## Follow-Up
 

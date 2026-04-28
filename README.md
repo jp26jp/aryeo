@@ -2,9 +2,9 @@
 # Aryeo Python Client
 
 Aryeo is a typed Python client for the Aryeo API. The client is generated from
-the checked-in OpenAPI wrapper at `docs/api/aryeo.json` and follows the same
-repository shape used by the ReZEN client: flat resource modules, explicit
-exports, MkDocs documentation, per-resource tests, and release-quality checks.
+the checked-in OpenAPI wrapper at `docs/api/aryeo.json` and uses a
+client-library repository shape: flat resource modules, explicit exports,
+MkDocs documentation, per-resource tests, and release-quality checks.
 
 ## Current Scope
 
@@ -13,7 +13,7 @@ exports, MkDocs documentation, per-resource tests, and release-quality checks.
   operations
 - Generated `aryeo/models.py` and `aryeo/enums.py` from the checked-in spec
 - Compatibility exports under `aryeo/resources/`
-- Python `>=3.11` by design, even though ReZEN supports older versions
+- Python `>=3.11` by design
 
 Resource methods intentionally return decoded JSON until each endpoint can be
 confidently mapped to stable request and response models.

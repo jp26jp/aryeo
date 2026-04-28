@@ -7,7 +7,7 @@
 
 ## Current Focus
 
-- ReZEN-style package structure, generated models/enums, per-resource tests, and
+- Client-library package structure, generated models/enums, per-resource tests, and
   release hygiene.
 
 ## Ordered Phases
@@ -30,7 +30,7 @@
 - Exit criteria: In Progress
 ### Phase 4 - Docs And Examples
 - Inputs: docs/, mkdocs.yml, examples/
-- Deliverables: Docs use ReZEN-style navigation and strict builds pass.
+- Deliverables: Docs use client-library navigation and strict builds pass.
 - Exit criteria: In Progress
 ### Phase 5 - Workflows And Release
 - Inputs: .github/workflows/, .github/dependabot.yml
