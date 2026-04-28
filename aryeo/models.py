@@ -6,6 +6,8 @@ JSON-based when request or response coercion cannot be inferred safely.
 
 from __future__ import annotations
 
+import builtins
+
 from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 from aryeo.enums import (
@@ -148,7 +150,6 @@ from aryeo.enums import (
     VideoObjectEnum,
     VideoSourceTypeEnum,
 )
-from aryeo.types import JSONValue
 
 
 class Activity(BaseModel):
@@ -176,7 +177,7 @@ class Activity(BaseModel):
         alias="group",
     )
 
-    html_payload: dict[str, JSONValue] | None = Field(
+    html_payload: dict[str, builtins.object] | None = Field(
         default=None,
         alias="html_payload",
     )
@@ -201,12 +202,12 @@ class Activity(BaseModel):
         alias="occurred_at",
     )
 
-    payload: dict[str, JSONValue] | None = Field(
+    payload: dict[str, builtins.object] | None = Field(
         default=None,
         alias="payload",
     )
 
-    resource: dict[str, JSONValue] | None = Field(
+    resource: dict[str, builtins.object] | None = Field(
         default=None,
         alias="resource",
     )
@@ -288,7 +289,7 @@ class ActivityPostPayload(BaseModel):
         alias="name",
     )
 
-    payload: dict[str, JSONValue] | None = Field(
+    payload: dict[str, builtins.object] | None = Field(
         default=None,
         alias="payload",
     )
@@ -466,7 +467,7 @@ class AddressPatchPayload(BaseModel):
         alias="county_or_parish",
     )
 
-    external_data: list[dict[str, JSONValue]] | None = Field(
+    external_data: list[dict[str, builtins.object]] | None = Field(
         default=None,
         alias="external_data",
     )
@@ -716,7 +717,7 @@ class AddressSearchResult(BaseModel):
         alias="county_or_parish",
     )
 
-    external_data: dict[str, JSONValue] | None = Field(
+    external_data: dict[str, builtins.object] | None = Field(
         default=None,
         alias="external_data",
     )
@@ -1097,7 +1098,7 @@ class Appointment(BaseModel):
         alias="items",
     )
 
-    late_cancellation_fee: list[dict[str, JSONValue]] | None = Field(
+    late_cancellation_fee: list[dict[str, builtins.object]] | None = Field(
         default=None,
         alias="late_cancellation_fee",
     )
@@ -1201,7 +1202,7 @@ class Appointment3dhTourLinkResponse(BaseModel):
     )
 
 
-class AppointmentAcceptPutPayload(RootModel[dict[str, JSONValue]]):
+class AppointmentAcceptPutPayload(RootModel[dict[str, builtins.object]]):
     """Aryeo API root schema for `#/components/schemas/AppointmentAcceptPutPayload`."""
 
 
@@ -1873,7 +1874,7 @@ class CalendarDayCollectionMeta(BaseModel):
         alias="timeframe",
     )
 
-    timeframe_period: dict[str, JSONValue] | None = Field(
+    timeframe_period: dict[str, builtins.object] | None = Field(
         default=None,
         alias="timeframe_period",
     )
@@ -2097,7 +2098,7 @@ class CompanyTeamMember(BaseModel):
         alias="restricted_customers",
     )
 
-    restrictions: list[dict[str, JSONValue]] = Field(
+    restrictions: list[dict[str, builtins.object]] = Field(
         default=...,
         alias="restrictions",
     )
@@ -2365,7 +2366,7 @@ class CubiCasaFloorplan(BaseModel):
         alias="show_all",
     )
 
-    suggested: dict[str, JSONValue] | None = Field(
+    suggested: dict[str, builtins.object] | None = Field(
         default=...,
         alias="suggested",
     )
@@ -3217,7 +3218,7 @@ class DiscountPostPayload(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True, extra="allow")
 
-    coupon_data: dict[str, JSONValue] | None = Field(
+    coupon_data: dict[str, builtins.object] | None = Field(
         default=None,
         alias="coupon_data",
     )
@@ -3396,7 +3397,7 @@ class DiscountableItem(BaseModel):
     )
 
 
-class Dots(RootModel[dict[str, dict[str, JSONValue]]]):
+class Dots(RootModel[dict[str, dict[str, builtins.object]]]):
     """Aryeo API root schema for `#/components/schemas/Dots`."""
 
 
@@ -3452,17 +3453,17 @@ class EsoftOrderLine(BaseModel):
         alias="esoft_order_line_id",
     )
 
-    esoft_product_id: JSONValue | None = Field(
+    esoft_product_id: builtins.object | None = Field(
         default=None,
         alias="esoft_product_id",
     )
 
-    esoft_product_name: JSONValue | None = Field(
+    esoft_product_name: builtins.object | None = Field(
         default=None,
         alias="esoft_product_name",
     )
 
-    esoft_product_variant: JSONValue | None = Field(
+    esoft_product_variant: builtins.object | None = Field(
         default=None,
         alias="esoft_product_variant",
     )
@@ -3477,12 +3478,12 @@ class EsoftOrderLine(BaseModel):
         alias="object",
     )
 
-    quantity: JSONValue | None = Field(
+    quantity: builtins.object | None = Field(
         default=None,
         alias="quantity",
     )
 
-    reference: JSONValue | None = Field(
+    reference: builtins.object | None = Field(
         default=None,
         alias="reference",
     )
@@ -3719,7 +3720,7 @@ class Group(BaseModel):
         alias="currency",
     )
 
-    custom_field_entries: list[dict[str, JSONValue]] | None = Field(
+    custom_field_entries: list[dict[str, builtins.object]] | None = Field(
         default=None,
         alias="custom_field_entries",
     )
@@ -3978,7 +3979,7 @@ class GroupCustomer(BaseModel):
         alias="currency",
     )
 
-    custom_field_entries: list[dict[str, JSONValue]] | None = Field(
+    custom_field_entries: list[dict[str, builtins.object]] | None = Field(
         default=None,
         alias="custom_field_entries",
     )
@@ -4138,7 +4139,7 @@ class GroupCustomer(BaseModel):
         alias="quickbooks_customer_id",
     )
 
-    restricted_photographers: list[dict[str, JSONValue]] | None = Field(
+    restricted_photographers: list[dict[str, builtins.object]] | None = Field(
         default=None,
         alias="restricted_photographers",
     )
@@ -4659,7 +4660,7 @@ class ListingCountsResource(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True, extra="allow")
 
-    data: dict[str, JSONValue] = Field(
+    data: dict[str, builtins.object] = Field(
         default=...,
         alias="data",
     )
@@ -4875,7 +4876,7 @@ class ListingPostPayload(BaseModel):
         alias="order_ids",
     )
 
-    sections: dict[str, JSONValue] | None = Field(
+    sections: dict[str, builtins.object] | None = Field(
         default=None,
         alias="sections",
     )
@@ -5025,7 +5026,7 @@ class ListingStats(BaseModel):
         alias="allReferrers",
     )
 
-    avg_time_on_page: JSONValue | None = Field(
+    avg_time_on_page: builtins.object | None = Field(
         default=None,
         alias="avgTimeOnPage",
     )
@@ -5035,12 +5036,12 @@ class ListingStats(BaseModel):
         alias="topReferrer",
     )
 
-    total_users: JSONValue | None = Field(
+    total_users: builtins.object | None = Field(
         default=None,
         alias="totalUsers",
     )
 
-    total_views: JSONValue | None = Field(
+    total_views: builtins.object | None = Field(
         default=None,
         alias="totalViews",
     )
@@ -5478,7 +5479,7 @@ class MediaSearchResource(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True, extra="allow")
 
-    data: dict[str, JSONValue] | None = Field(
+    data: dict[str, builtins.object] | None = Field(
         default=None,
         alias="data",
     )
@@ -5638,7 +5639,7 @@ class Order(BaseModel):
         alias="currency",
     )
 
-    custom_fields: list[dict[str, JSONValue]] | None = Field(
+    custom_fields: list[dict[str, builtins.object]] | None = Field(
         default=None,
         alias="custom_fields",
     )
@@ -5935,7 +5936,7 @@ class OrderForm(BaseModel):
         alias="company",
     )
 
-    form_settings: dict[str, JSONValue] | None = Field(
+    form_settings: dict[str, builtins.object] | None = Field(
         default=None,
         alias="form_settings",
     )
@@ -6082,7 +6083,7 @@ class OrderFormSession(BaseModel):
         alias="order_form",
     )
 
-    product_filters: dict[str, JSONValue] | None = Field(
+    product_filters: dict[str, builtins.object] | None = Field(
         default=None,
         alias="product_filters",
     )
@@ -6092,7 +6093,7 @@ class OrderFormSession(BaseModel):
         alias="show_header",
     )
 
-    step_visibility: dict[str, JSONValue] | None = Field(
+    step_visibility: dict[str, builtins.object] | None = Field(
         default=None,
         alias="step_visibility",
     )
@@ -6113,7 +6114,7 @@ class OrderFormSessionPostPayload(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True, extra="allow")
 
-    address_data: dict[str, JSONValue] | None = Field(
+    address_data: dict[str, builtins.object] | None = Field(
         default=None,
         alias="address_data",
     )
@@ -6128,7 +6129,7 @@ class OrderFormSessionPostPayload(BaseModel):
         alias="coupon_ids",
     )
 
-    customer_data: dict[str, JSONValue] | None = Field(
+    customer_data: dict[str, builtins.object] | None = Field(
         default=None,
         alias="customer_data",
     )
@@ -6148,7 +6149,7 @@ class OrderFormSessionPostPayload(BaseModel):
         alias="order_form_id",
     )
 
-    step_visibility: dict[str, JSONValue] | None = Field(
+    step_visibility: dict[str, builtins.object] | None = Field(
         default=None,
         alias="step_visibility",
     )
@@ -6573,7 +6574,7 @@ class OrderPostPayload(BaseModel):
         alias="notify",
     )
 
-    product_items: list[dict[str, JSONValue]] | None = Field(
+    product_items: list[dict[str, builtins.object]] | None = Field(
         default=None,
         alias="product_items",
     )
@@ -6723,7 +6724,7 @@ class OrderTagsPostPayload(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True, extra="allow")
 
-    tag: dict[str, JSONValue] | None = Field(
+    tag: dict[str, builtins.object] | None = Field(
         default=None,
         alias="tag",
     )
@@ -6924,7 +6925,7 @@ class PaymentGateway(BaseModel):
         alias="id",
     )
 
-    metadata: list[dict[str, JSONValue]] | None = Field(
+    metadata: list[dict[str, builtins.object]] | None = Field(
         default=...,
         alias="metadata",
     )
@@ -7774,7 +7775,7 @@ class PortalAppRevision(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True, extra="allow")
 
-    changes: list[dict[str, JSONValue]] = Field(
+    changes: list[dict[str, builtins.object]] = Field(
         default=...,
         alias="changes",
     )
@@ -7794,7 +7795,7 @@ class PortalAppRevision(BaseModel):
         alias="object",
     )
 
-    screenshots: list[dict[str, JSONValue]] = Field(
+    screenshots: list[dict[str, builtins.object]] = Field(
         default=...,
         alias="screenshots",
     )
@@ -8792,7 +8793,7 @@ class SavedViewFilter(BaseModel):
         alias="updated_at",
     )
 
-    value: JSONValue = Field(
+    value: builtins.object = Field(
         default=...,
         alias="value",
     )
@@ -8803,7 +8804,7 @@ class SavedViewPatchPayload(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True, extra="allow")
 
-    filters: list[dict[str, JSONValue]] | None = Field(
+    filters: list[dict[str, builtins.object]] | None = Field(
         default=None,
         alias="filters",
     )
@@ -8834,7 +8835,7 @@ class SavedViewPostPayload(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True, extra="allow")
 
-    filters: list[dict[str, JSONValue]] | None = Field(
+    filters: list[dict[str, builtins.object]] | None = Field(
         default=None,
         alias="filters",
     )
@@ -9101,7 +9102,7 @@ class TagsPostPayload(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True, extra="allow")
 
-    tag: dict[str, JSONValue] | None = Field(
+    tag: dict[str, builtins.object] | None = Field(
         default=None,
         alias="tag",
     )
@@ -9288,7 +9289,7 @@ class TaskPutPayload(BaseModel):
     )
 
 
-class TaskReinstatePutPayload(RootModel[dict[str, JSONValue]]):
+class TaskReinstatePutPayload(RootModel[dict[str, builtins.object]]):
     """Aryeo API root schema for `#/components/schemas/TaskReinstatePutPayload`."""
 
 
@@ -9397,7 +9398,7 @@ class TaxPostPayload(BaseModel):
         alias="order_id",
     )
 
-    tax_rate_data: dict[str, JSONValue] | None = Field(
+    tax_rate_data: dict[str, builtins.object] | None = Field(
         default=None,
         alias="tax_rate_data",
     )

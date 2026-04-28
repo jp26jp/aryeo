@@ -1,4 +1,0 @@
-
-# Client
-
-::: aryeo.client.AryeoClient

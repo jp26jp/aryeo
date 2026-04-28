@@ -828,7 +828,7 @@ def schema_type_hint(
 
     _ = schemas
     if not isinstance(schema, dict):
-        return "JSONValue"
+        return "builtins.object"
     schema, nullable = nullable_schema(schema)
     source_path = ".".join((schema_name, *path)) if path else schema_name
     if source_path in enum_path_map:
@@ -836,7 +836,7 @@ def schema_type_hint(
     elif "$ref" in schema and isinstance(schema["$ref"], str):
         hint = ref_to_class_name(schema["$ref"])
     elif "const" in schema:
-        hint = "JSONValue"
+        hint = "builtins.object"
     elif isinstance(schema.get("allOf"), list):
         variants = [
             schema_type_hint(
@@ -849,7 +849,7 @@ def schema_type_hint(
             for index, variant in enumerate(schema["allOf"])
         ]
         unique_variants = [variant for variant in dict.fromkeys(variants) if variant]
-        hint = unique_variants[0] if len(unique_variants) == 1 else "JSONValue"
+        hint = unique_variants[0] if len(unique_variants) == 1 else "builtins.object"
     elif isinstance(schema.get("anyOf"), list) or isinstance(schema.get("oneOf"), list):
         key = "anyOf" if isinstance(schema.get("anyOf"), list) else "oneOf"
         variants = [
@@ -863,7 +863,7 @@ def schema_type_hint(
             for index, variant in enumerate(schema[key])
         ]
         unique_variants = [variant for variant in dict.fromkeys(variants) if variant]
-        hint = " | ".join(unique_variants) if unique_variants else "JSONValue"
+        hint = " | ".join(unique_variants) if unique_variants else "builtins.object"
     else:
         schema_type = schema.get("type")
         if schema_type == "array":
@@ -887,7 +887,7 @@ def schema_type_hint(
                 )
                 hint = f"dict[str, {value_hint}]"
             else:
-                hint = "dict[str, JSONValue]"
+                hint = "dict[str, builtins.object]"
         elif schema_type == "integer":
             hint = "int"
         elif schema_type == "number":
@@ -897,7 +897,7 @@ def schema_type_hint(
         elif schema_type == "string":
             hint = "str"
         else:
-            hint = "JSONValue"
+            hint = "builtins.object"
 
     if nullable and "None" not in hint:
         return f"{hint} | None"
@@ -1000,6 +1000,8 @@ def render_model_module(
         "",
         "from __future__ import annotations",
         "",
+        "import builtins",
+        "",
         "from pydantic import BaseModel, ConfigDict, Field, RootModel",
         "",
     ]
@@ -1008,7 +1010,6 @@ def render_model_module(
         model_sections.append("from aryeo.enums import (")
         model_sections.extend(f"    {name}," for name in enum_names)
         model_sections.append(")")
-    model_sections.append("from aryeo.types import JSONValue")
     model_sections.append("")
     model_sections.append("")
 
@@ -1063,7 +1064,7 @@ def render_model_module(
             path=(),
         )
         if root_hint == class_name:
-            root_hint = "JSONValue"
+            root_hint = "builtins.object"
         known_root_type = isinstance(schema_type, str) and schema_type in {
             "array",
             "object",
@@ -2132,17 +2133,26 @@ def render_mkdocs(resource_groups: list[ResourceGroup]) -> str:
         f"      - {group.tag}: api-reference/{group.module_name}.md"
         for group in resource_groups
     )
+    contract_resource_nav = "\n".join(
+        f"          - {group.tag}: {group.doc_path}" for group in resource_groups
+    )
     planning_nav = """
           - Planning Overview: planning/aryeo-api-client/README.md
           - Artifact Path Index: planning/aryeo-api-client/ARTIFACT_PATH_INDEX.md
+          - Foundation Overview: planning/aryeo-api-client/foundation/README.md
           - Source Of Truth: planning/aryeo-api-client/foundation/api-source-of-truth.md
           - Source Matrix: planning/aryeo-api-client/foundation/source-of-truth-matrix.md
+          - Package And Versioning ADR: planning/aryeo-api-client/foundation/package-and-versioning-adr.md
+          - Rules And Ownership ADR: planning/aryeo-api-client/foundation/rules-and-ownership-adr.md
+          - Trackers Overview: planning/aryeo-api-client/trackers/README.md
           - Readiness Overview: planning/aryeo-api-client/trackers/readiness-overview.md
           - Endpoint Readiness: planning/aryeo-api-client/trackers/endpoint-inventory-readiness.md
           - Coverage Readiness: planning/aryeo-api-client/trackers/coverage-and-tests-readiness.md
           - Docs Readiness: planning/aryeo-api-client/trackers/docs-parity-readiness.md
           - Workflow Readiness: planning/aryeo-api-client/trackers/workflow-release-readiness.md
           - Live Integration Readiness: planning/aryeo-api-client/trackers/live-integration-readiness.md
+          - Live Endpoint Checklist: planning/aryeo-api-client/trackers/live-endpoint-verification-checklist.md
+          - Execution Overview: planning/aryeo-api-client/execution/README.md
           - Execution Plan: planning/aryeo-api-client/execution/execution-plan.md
           - Roadmap: planning/aryeo-api-client/execution/roadmap.md
           - Bootstrap Plan: planning/aryeo-api-client/execution/api-client-bootstrap-plan.md
@@ -2221,6 +2231,8 @@ nav:
       - API Errors: api/guides/errors.md
       - API Pagination: api/guides/pagination.md
       - API Reference Index: api/reference/README.md
+      - API Tag Reference:
+{contract_resource_nav}
       - Changelog: reference/changelog.md
   - Development:
       - development/index.md
