@@ -10,12 +10,9 @@
 
 | Source | Path | Status | Why it matters |
 | --- | --- | --- | --- |
-| Generated API overview | `docs/api/README.md` | Used | Summarizes the wrapper, counts, and server. |
-| OpenAPI wrapper | `docs/api/aryeo.json` | Used | Canonical machine-readable contract. |
-| Auth guide | `docs/api/guides/authentication.md` | Used | Confirms bearer-token behavior and public ops. |
-| Errors guide | `docs/api/guides/errors.md` | Used | Captures shared 4xx and 5xx shapes. |
-| Pagination guide | `docs/api/guides/pagination.md` | Used | Confirms shared page/per_page semantics. |
-| Reference index | `docs/api/reference/README.md` | Used | Confirms tag groupings and counts. |
+| Generated API overview | `docs/api/README.md` | Used | Summarizes counts and generated API contract docs. |
+| OpenAPI wrapper | `docs/api/aryeo.json` | Used | Canonical machine-readable endpoint and schema contract. |
+| Generated API guides | `docs/api/guides/` | Used | Documents auth, errors, and pagination. |
 
 ## Base Contract
 
@@ -24,42 +21,40 @@
 | Base URL | `https://api.aryeo.com/v1` | `docs/api/aryeo.json` |
 | Authentication | Bearer token on 85 operations; 5 are public | `docs/api/guides/authentication.md` |
 | Versioning | Spec version `1.0.0` | `docs/api/README.md` |
-| Pagination | `page` and `per_page` plus common sort/include support | `docs/api/guides/pagination.md` |
-| Errors | Shared 403/404/409/422/500 schema family | `docs/api/guides/errors.md` |
-| Rate limits | Not documented in checked-in sources | `docs/api/aryeo.json` |
+| Pagination | `page` and `per_page` query patterns | `docs/api/` |
+| Errors | Shared 4xx and 5xx JSON payloads | `docs/api/` |
+| Rate limits | Not documented | `docs/api/aryeo.json` |
 
 ## Resource Inventory
 
 | Resource group | Coverage status | Notes |
 | --- | --- | --- |
-| Addresses | Low-level surface scaffolded | 3 operations in `aryeo/resources/addresses.py` |
-| Appointments | Low-level surface scaffolded | 12 operations in `aryeo/resources/appointments.py` |
-| Company Users | Low-level surface scaffolded | 3 operations in `aryeo/resources/company_users.py` |
-| Customer Users | Low-level surface scaffolded | 8 operations in `aryeo/resources/customer_users.py` |
-| Discounts | Low-level surface scaffolded | 6 operations in `aryeo/resources/discounts.py` |
-| Listings | Low-level surface scaffolded | 7 operations in `aryeo/resources/listings.py` |
-| Notes | Low-level surface scaffolded | 1 operations in `aryeo/resources/notes.py` |
-| Order Forms | Low-level surface scaffolded | 2 operations in `aryeo/resources/order_forms.py` |
-| Order Items | Low-level surface scaffolded | 4 operations in `aryeo/resources/order_items.py` |
-| Orders | Low-level surface scaffolded | 6 operations in `aryeo/resources/orders.py` |
-| Payroll | Low-level surface scaffolded | 2 operations in `aryeo/resources/payroll.py` |
-| Products | Low-level surface scaffolded | 5 operations in `aryeo/resources/products.py` |
-| Scheduling | Low-level surface scaffolded | 9 operations in `aryeo/resources/scheduling.py` |
-| Tags | Low-level surface scaffolded | 12 operations in `aryeo/resources/tags.py` |
-| Tasks | Low-level surface scaffolded | 7 operations in `aryeo/resources/tasks.py` |
-| Videos | Low-level surface scaffolded | 3 operations in `aryeo/resources/videos.py` |
+| Addresses | Flat resource generated | 3 operations in `aryeo/addresses.py` |
+| Appointments | Flat resource generated | 12 operations in `aryeo/appointments.py` |
+| Company Users | Flat resource generated | 3 operations in `aryeo/company_users.py` |
+| Customer Users | Flat resource generated | 8 operations in `aryeo/customer_users.py` |
+| Discounts | Flat resource generated | 6 operations in `aryeo/discounts.py` |
+| Listings | Flat resource generated | 7 operations in `aryeo/listings.py` |
+| Notes | Flat resource generated | 1 operations in `aryeo/notes.py` |
+| Order Forms | Flat resource generated | 2 operations in `aryeo/order_forms.py` |
+| Order Items | Flat resource generated | 4 operations in `aryeo/order_items.py` |
+| Orders | Flat resource generated | 6 operations in `aryeo/orders.py` |
+| Payroll | Flat resource generated | 2 operations in `aryeo/payroll.py` |
+| Products | Flat resource generated | 5 operations in `aryeo/products.py` |
+| Scheduling | Flat resource generated | 9 operations in `aryeo/scheduling.py` |
+| Tags | Flat resource generated | 12 operations in `aryeo/tags.py` |
+| Tasks | Flat resource generated | 7 operations in `aryeo/tasks.py` |
+| Videos | Flat resource generated | 3 operations in `aryeo/videos.py` |
+
+## Model And Enum Inventory
+
+- Generated models: 248
+- Generated enums: 138
+- Inline enum paths found: 138
 
 ## Contradictions And Gaps
 
-- The checked-in docs do not describe rate limits or retry budgets.
-- The spec applies auth per operation instead of globally, so the client must preserve public exceptions.
-- Path parameter naming is inconsistent across endpoints, for example `order_id` versus `order`.
-- Two request bodies are inline objects instead of named component schemas.
-- Enums are mostly inline within properties and parameters rather than shared component enum schemas.
-- No webhook or async callback contract is present in the checked-in sources.
-
-## Follow-Up Before Implementation
-
-- Decide how to model inline request bodies in a typed way during the next phase.
-- Confirm whether publication should use the distribution name `aryeo` or a namespaced variant.
-- Add live contract tests once valid credentials and a non-production environment are available.
+- Rate limits and retry budgets are not documented in checked-in sources.
+- No webhook or async callback contract is present.
+- Resource methods remain JSON-based until endpoint-specific model coercion can be proven with tests and examples.
+- Ambiguous schemas retained JSON-compatible fallback typing: `FeatureFlags`.

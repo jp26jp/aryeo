@@ -6,32 +6,30 @@ import os
 
 import httpx
 
+from aryeo.addresses import AddressesResource
+from aryeo.appointments import AppointmentsResource
 from aryeo.base_client import (
     DEFAULT_BASE_URL,
     DEFAULT_TIMEOUT,
     DEFAULT_USER_AGENT,
     BaseClient,
 )
+from aryeo.company_users import CompanyUsersResource
+from aryeo.customer_users import CustomerUsersResource
+from aryeo.discounts import DiscountsResource
 from aryeo.exceptions import AryeoConfigurationError
-from aryeo.resources import (
-    AddressesResource,
-    AppointmentsResource,
-    CompanyUsersResource,
-    CustomerUsersResource,
-    DiscountsResource,
-    ListingsResource,
-    NotesResource,
-    OrderFormsResource,
-    OrderItemsResource,
-    OrdersResource,
-    PayrollResource,
-    ProductsResource,
-    SchedulingResource,
-    TagsResource,
-    TasksResource,
-    VideosResource,
-)
+from aryeo.listings import ListingsResource
+from aryeo.notes import NotesResource
+from aryeo.order_forms import OrderFormsResource
+from aryeo.order_items import OrderItemsResource
+from aryeo.orders import OrdersResource
+from aryeo.payroll import PayrollResource
+from aryeo.products import ProductsResource
+from aryeo.scheduling import SchedulingResource
+from aryeo.tags import TagsResource
+from aryeo.tasks import TasksResource
 from aryeo.types import RequestTimeout
+from aryeo.videos import VideosResource
 
 RESOURCE_NAMES = (
     "addresses",
@@ -54,7 +52,7 @@ RESOURCE_NAMES = (
 
 
 class AryeoClient(BaseClient):
-    """Sync Aryeo API client grouped by API tag."""
+    """Sync Aryeo API client grouped by documented API tag."""
 
     addresses: AddressesResource
     appointments: AppointmentsResource

@@ -1,10 +1,9 @@
-
 # Docs Parity Readiness
 
 | Surface | Status | Notes |
 | --- | --- | --- |
-| README | Present | Explains scope, install, validation, and regeneration |
-| MkDocs config | Present | Builds package reference and checked-in API docs |
-| Getting started guides | Present | Install, auth, and quickstart pages exist |
-| Package reference | Present | Client, exceptions, and resources pages exist |
-| Narrative usage guides | Deferred | Workflow-specific docs can grow after typed models |
+| README | Present | Explains ReZEN-style structure and Aryeo deviations |
+| MkDocs nav | Present | Home, Getting Started, Guides, API Reference, Reference, Development |
+| API reference | Present | Every public resource module has a page |
+| API contract docs | Present | Kept under Reference |
+| Planning docs | Development only | Moved out of primary user-facing nav |

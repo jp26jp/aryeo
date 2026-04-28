@@ -3,12 +3,12 @@
 
 ## Goal
 
-- Recreate a typed Python API client baseline from the available API docs.
+- Maintain a typed Python client baseline from the checked-in Aryeo API docs.
 
 ## Current Focus
 
-- Phase 2 follow-up work: move from low-level JSON payloads toward typed request
-  and response models without losing contract coverage.
+- ReZEN-style package structure, generated models/enums, per-resource tests, and
+  release hygiene.
 
 ## Ordered Phases
 
@@ -21,22 +21,22 @@
 - Deliverables: Package metadata, core transport, and exceptions exist.
 - Exit criteria: Complete
 ### Phase 2 - Endpoint Inventory And Models
-- Inputs: aryeo/resources/, docs/reference/resources.md
-- Deliverables: Generated resource methods cover the documented surface.
+- Inputs: aryeo/*.py, aryeo/models.py, aryeo/enums.py
+- Deliverables: Generated resources, models, and enums cover the spec.
 - Exit criteria: In Progress
 ### Phase 3 - Tests And Coverage
 - Inputs: tests/
-- Deliverables: Core behavior and generated request wiring are tested.
+- Deliverables: Core, model/export, and per-resource tests pass.
 - Exit criteria: In Progress
 ### Phase 4 - Docs And Examples
 - Inputs: docs/, mkdocs.yml, examples/
-- Deliverables: The docs site explains install, auth, and generated surfaces.
+- Deliverables: Docs use ReZEN-style navigation and strict builds pass.
 - Exit criteria: In Progress
 ### Phase 5 - Workflows And Release
 - Inputs: .github/workflows/, .github/dependabot.yml
-- Deliverables: Baseline workflows are checked in and consistent with packaging.
+- Deliverables: Release paths run the same core validation as CI.
 - Exit criteria: In Progress
 ### Phase 6 - Parity Audit
 - Inputs: docs/planning/.../trackers/, execution/
-- Deliverables: Deferred gaps are explicit and prioritized.
+- Deliverables: Remaining gaps are explicit and prioritized.
 - Exit criteria: Pending

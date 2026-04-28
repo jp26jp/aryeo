@@ -18,6 +18,9 @@ Date: 2026-04-27
 
 Result: 10 passed, 0 failed, 6 skipped.
 
+Endpoint-level production verification is tracked in
+`live-endpoint-verification-checklist.md`.
+
 | Resource | Live Check | Status | Notes |
 | --- | --- | --- | --- |
 | Addresses | `GET /addresses/{address}` | Skipped | Requires `ARYEO_LIVE_ADDRESS_ID` |

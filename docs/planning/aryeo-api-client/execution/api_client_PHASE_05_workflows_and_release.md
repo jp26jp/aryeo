@@ -1,6 +1,5 @@
-
 # API Client Phase 05 Workflows And Release
 
-- Added CI, docs, security, release, and manual deployment workflow scaffolding.
-- Added Dependabot configuration for root pip, docs pip, and GitHub Actions.
-- Real publication remains deferred until the repo is connected to GitHub and PyPI.
+- Aligned release and unified deployment gates with CI.
+- Kept strict docs build, package build, and twine check.
+- Kept dependency/security audit automation.

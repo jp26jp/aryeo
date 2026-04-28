@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
-from typing import cast
+from collections.abc import Mapping
+from typing import Any, cast
 
 import httpx
+from pydantic import BaseModel
 
 from aryeo.exceptions import AryeoAPIError, AryeoConfigurationError, AryeoRequestError
 from aryeo.types import JSONMapping, JSONResponse, QueryParams, RequestTimeout
@@ -95,13 +97,35 @@ class BaseClient:
 
         return f"{self._base_url}{path}"
 
+    def _serialize_payload(
+        self,
+        payload: JSONMapping | BaseModel | Mapping[str, Any] | None,
+    ) -> Mapping[str, Any] | None:
+        """Serialize supported JSON payload inputs.
+
+        Args:
+            payload: JSON mapping or Pydantic model to send.
+
+        Returns:
+            A JSON-compatible mapping, or `None`.
+        """
+
+        if payload is None:
+            return None
+        if isinstance(payload, BaseModel):
+            return cast(
+                Mapping[str, Any],
+                payload.model_dump(by_alias=True, exclude_none=True),
+            )
+        return payload
+
     def request_json(
         self,
         method: str,
         path: str,
         *,
         params: QueryParams | None = None,
-        payload: JSONMapping | None = None,
+        payload: JSONMapping | BaseModel | Mapping[str, Any] | None = None,
         timeout: RequestTimeout = None,
         auth_required: bool = True,
     ) -> JSONResponse:
@@ -111,7 +135,7 @@ class BaseClient:
             method: HTTP method to use.
             path: API path that will be joined to the configured base URL.
             params: Optional query string parameters.
-            payload: Optional JSON request body.
+            payload: Optional JSON request body or Pydantic model.
             timeout: Optional timeout override for this request.
             auth_required: Whether the request must include the bearer token.
 
@@ -119,8 +143,8 @@ class BaseClient:
             The decoded JSON response body, or `None` for empty responses.
 
         Raises:
-            AryeoAPIError: If the API returns a non-success status code.
-            AryeoRequestError: If the transport fails or the body is not JSON.
+            AryeoAPIError: If the API returns a non-success response.
+            AryeoRequestError: If the request fails before completion.
             AryeoConfigurationError: If auth is required and no token exists.
         """
 
@@ -130,7 +154,7 @@ class BaseClient:
                 url=self._build_url(path),
                 headers=self._build_headers(auth_required=auth_required),
                 params=params,
-                json=payload,
+                json=self._serialize_payload(payload),
                 timeout=timeout if timeout is not None else self._default_timeout,
             )
         except httpx.HTTPError as exc:
@@ -151,3 +175,11 @@ class BaseClient:
             ) from exc
 
         return body
+
+
+__all__ = [
+    "BaseClient",
+    "DEFAULT_BASE_URL",
+    "DEFAULT_TIMEOUT",
+    "DEFAULT_USER_AGENT",
+]

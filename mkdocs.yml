@@ -1,78 +1,107 @@
 
 site_name: Aryeo Python Client
+site_description: Typed Python client for the Aryeo API
+
 theme:
   name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - toc.follow
+
 plugins:
   - search
   - mkdocstrings:
       handlers:
         python:
+          paths: [.]
           options:
             docstring_style: google
-            show_root_heading: true
-            show_signature_annotations: true
+            merge_init_into_class: true
             show_source: false
+            show_signature_annotations: true
+            show_root_heading: true
+            show_submodules: false
+
 markdown_extensions:
   - admonition
   - attr_list
   - def_list
   - tables
+  - toc:
+      permalink: true
+
 nav:
   - Home: index.md
   - Getting Started:
+      - getting-started/index.md
       - Installation: getting-started/installation.md
       - Authentication: getting-started/authentication.md
       - Quickstart: getting-started/quickstart.md
-  - API Contract:
-      - Overview: api/README.md
-      - Authentication: api/guides/authentication.md
-      - Errors: api/guides/errors.md
-      - Pagination: api/guides/pagination.md
-      - Reference Index: api/reference/README.md
-      - Tag Reference:
-          - Addresses: api/reference/addresses.md
-          - Appointments: api/reference/appointments.md
-          - Company Users: api/reference/company-users.md
-          - Customer Users: api/reference/customer-users.md
-          - Discounts: api/reference/discounts.md
-          - Listings: api/reference/listings.md
-          - Notes: api/reference/notes.md
-          - Order Forms: api/reference/order-forms.md
-          - Order Items: api/reference/order-items.md
-          - Orders: api/reference/orders.md
-          - Payroll: api/reference/payroll.md
-          - Products: api/reference/products.md
-          - Scheduling: api/reference/scheduling.md
-          - Tags: api/reference/tags.md
-          - Tasks: api/reference/tasks.md
-          - Videos: api/reference/videos.md
-  - Python Reference:
-      - Overview: reference/index.md
-      - Client: reference/client.md
-      - Exceptions: reference/exceptions.md
-      - Resources: reference/resources.md
-  - Planning:
-      - Overview: planning/aryeo-api-client/README.md
-      - Artifact Path Index: planning/aryeo-api-client/ARTIFACT_PATH_INDEX.md
-      - Foundation:
-          - Overview: planning/aryeo-api-client/foundation/README.md
-          - API Source Of Truth: planning/aryeo-api-client/foundation/api-source-of-truth.md
-          - Source Of Truth Matrix: planning/aryeo-api-client/foundation/source-of-truth-matrix.md
-          - Package And Versioning ADR: planning/aryeo-api-client/foundation/package-and-versioning-adr.md
-          - Rules And Ownership ADR: planning/aryeo-api-client/foundation/rules-and-ownership-adr.md
-      - Trackers:
-          - Overview: planning/aryeo-api-client/trackers/README.md
+  - Guides:
+      - guides/index.md
+      - Examples: guides/examples.md
+      - Orders: guides/orders.md
+      - Listings: guides/listings.md
+      - Appointments: guides/appointments.md
+      - Live Checks: guides/live-checks.md
+  - API Reference:
+      - api-reference/index.md
+      - Client: api-reference/client.md
+      - Base Client: api-reference/base-client.md
+      - Exceptions: api-reference/exceptions.md
+      - Models: api-reference/models.md
+      - Enums: api-reference/enums.md
+      - Addresses: api-reference/addresses.md
+      - Appointments: api-reference/appointments.md
+      - Company Users: api-reference/company_users.md
+      - Customer Users: api-reference/customer_users.md
+      - Discounts: api-reference/discounts.md
+      - Listings: api-reference/listings.md
+      - Notes: api-reference/notes.md
+      - Order Forms: api-reference/order_forms.md
+      - Order Items: api-reference/order_items.md
+      - Orders: api-reference/orders.md
+      - Payroll: api-reference/payroll.md
+      - Products: api-reference/products.md
+      - Scheduling: api-reference/scheduling.md
+      - Tags: api-reference/tags.md
+      - Tasks: api-reference/tasks.md
+      - Videos: api-reference/videos.md
+  - Reference:
+      - reference/index.md
+      - API Contract Overview: api/README.md
+      - API Authentication: api/guides/authentication.md
+      - API Errors: api/guides/errors.md
+      - API Pagination: api/guides/pagination.md
+      - API Reference Index: api/reference/README.md
+      - Changelog: reference/changelog.md
+  - Development:
+      - development/index.md
+      - Contributing: development/contributing.md
+      - Planning Guide: development/planning.md
+      - Style Guide: STYLE_GUIDE.md
+      - Planning Artifacts:
+
+          - Planning Overview: planning/aryeo-api-client/README.md
+          - Artifact Path Index: planning/aryeo-api-client/ARTIFACT_PATH_INDEX.md
+          - Source Of Truth: planning/aryeo-api-client/foundation/api-source-of-truth.md
+          - Source Matrix: planning/aryeo-api-client/foundation/source-of-truth-matrix.md
           - Readiness Overview: planning/aryeo-api-client/trackers/readiness-overview.md
-          - Endpoint Inventory Readiness: planning/aryeo-api-client/trackers/endpoint-inventory-readiness.md
-          - Coverage And Tests Readiness: planning/aryeo-api-client/trackers/coverage-and-tests-readiness.md
+          - Endpoint Readiness: planning/aryeo-api-client/trackers/endpoint-inventory-readiness.md
+          - Coverage Readiness: planning/aryeo-api-client/trackers/coverage-and-tests-readiness.md
+          - Docs Readiness: planning/aryeo-api-client/trackers/docs-parity-readiness.md
+          - Workflow Readiness: planning/aryeo-api-client/trackers/workflow-release-readiness.md
           - Live Integration Readiness: planning/aryeo-api-client/trackers/live-integration-readiness.md
-          - Docs Parity Readiness: planning/aryeo-api-client/trackers/docs-parity-readiness.md
-          - Workflow Release Readiness: planning/aryeo-api-client/trackers/workflow-release-readiness.md
-      - Execution:
-          - Overview: planning/aryeo-api-client/execution/README.md
           - Execution Plan: planning/aryeo-api-client/execution/execution-plan.md
           - Roadmap: planning/aryeo-api-client/execution/roadmap.md
-          - API Client Bootstrap Plan: planning/aryeo-api-client/execution/api-client-bootstrap-plan.md
+          - Bootstrap Plan: planning/aryeo-api-client/execution/api-client-bootstrap-plan.md
           - Phase 00 Source Audit: planning/aryeo-api-client/execution/api_client_PHASE_00_source_audit.md
           - Phase 01 Foundation: planning/aryeo-api-client/execution/api_client_PHASE_01_foundation.md
           - Phase 02 Endpoint Inventory: planning/aryeo-api-client/execution/api_client_PHASE_02_endpoint_inventory.md
@@ -80,6 +109,3 @@ nav:
           - Phase 04 Docs And Examples: planning/aryeo-api-client/execution/api_client_PHASE_04_docs_and_examples.md
           - Phase 05 Workflows And Release: planning/aryeo-api-client/execution/api_client_PHASE_05_workflows_and_release.md
           - Phase 06 Parity Audit: planning/aryeo-api-client/execution/api_client_PHASE_06_parity_audit.md
-  - Development:
-      - Contributing: development/contributing.md
-      - Planning Guide: development/planning.md

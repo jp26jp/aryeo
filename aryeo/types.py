@@ -1,4 +1,4 @@
-"""Shared type aliases used by the Aryeo client runtime."""
+"""Shared transport-level type aliases used by the Aryeo client runtime."""
 
 from __future__ import annotations
 
@@ -22,3 +22,15 @@ RequestTimeoutTuple: TypeAlias = tuple[
     float | None,
 ]
 RequestTimeout: TypeAlias = float | httpx.Timeout | RequestTimeoutTuple | None
+
+__all__ = [
+    "JSONMapping",
+    "JSONResponse",
+    "JSONScalar",
+    "JSONValue",
+    "QueryParams",
+    "QueryScalar",
+    "QueryValue",
+    "RequestTimeout",
+    "RequestTimeoutTuple",
+]

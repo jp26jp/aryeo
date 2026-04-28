@@ -1,23 +1,22 @@
 
 # Aryeo Python Client
 
-This repository bootstraps a typed Python client around the checked-in Aryeo
-OpenAPI wrapper in `docs/api/aryeo.json`.
-
-The current baseline includes:
-
-- a sync `httpx` transport layer with auth, timeout, and error handling
-- generated resource clients for 16 API tags and
-  90 operations
-- planning docs under `docs/planning/aryeo-api-client/`
-- repo-local Cursor rules under `.cursor/rules/`
-- MkDocs configuration, examples, tests, and GitHub workflow scaffolding
+Aryeo is a typed Python client for the Aryeo API. The client is generated from
+the checked-in OpenAPI wrapper at `docs/api/aryeo.json` and follows the same
+repository shape used by the ReZEN client: flat resource modules, explicit
+exports, MkDocs documentation, per-resource tests, and release-quality checks.
 
 ## Current Scope
 
-This scaffold intentionally exposes low-level JSON request and response shapes.
-Schema-perfect models, richer pagination helpers, and live parity checks are
-deferred to later phases in the planning tree.
+- Sync `httpx` transport in `aryeo/base_client.py`
+- Flat resource modules for 16 API tags and 90
+  operations
+- Generated `aryeo/models.py` and `aryeo/enums.py` from the checked-in spec
+- Compatibility exports under `aryeo/resources/`
+- Python `>=3.11` by design, even though ReZEN supports older versions
+
+Resource methods intentionally return decoded JSON until each endpoint can be
+confidently mapped to stable request and response models.
 
 ## Install
 
@@ -42,8 +41,7 @@ called without a token.
 
 ## Live Integration Checks
 
-The repo includes an opt-in live smoke command that loads `.env`, avoids
-printing secrets, and only runs read-only API checks by default:
+Live checks are opt-in and avoid mutating API data by default:
 
 ```bash
 python tools/verify_live_integrations.py
@@ -51,22 +49,14 @@ python tools/verify_live_integrations.py
 
 Some resource groups require stable fixture IDs before they can be checked live.
 Set `ARYEO_LIVE_ADDRESS_ID`, `ARYEO_LIVE_ORDER_ITEM_ID`,
-`ARYEO_LIVE_ORDER_ID`, or `ARYEO_LIVE_VIDEO_ID` when you want those
-fixture-based reads or example branches to run.
+`ARYEO_LIVE_ORDER_ID`, or `ARYEO_LIVE_VIDEO_ID` for fixture-based reads.
 
 ## Regenerate
 
-The generated resource surface can be refreshed from the checked-in spec with:
-
 ```bash
-python tools/bootstrap_client_repo.py
+python tools/bootstrap_client_repo.py --force-curated
+python docs/api/generate_reference.py
 ```
-
-## Docs
-
-- API contract docs: `docs/api/`
-- Planning root: `docs/planning/aryeo-api-client/`
-- Package reference: `docs/reference/`
 
 ## Validation
 
@@ -76,7 +66,7 @@ isort --check-only --diff --profile=black --line-length=88 .
 flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 flake8 . --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics
 mypy aryeo/ --strict --ignore-missing-imports
-pytest --cov=aryeo --cov-report=xml --cov-report=term-missing
+pytest --cov=aryeo --cov-report=term-missing
 mkdocs build --strict
 python -m build
 python -m twine check dist/*
@@ -86,19 +76,19 @@ python -m twine check dist/*
 
 | Tag | Module | Operations |
 | --- | --- | --- |
-| Addresses | `aryeo/resources/addresses.py` | 3 |
-| Appointments | `aryeo/resources/appointments.py` | 12 |
-| Company Users | `aryeo/resources/company_users.py` | 3 |
-| Customer Users | `aryeo/resources/customer_users.py` | 8 |
-| Discounts | `aryeo/resources/discounts.py` | 6 |
-| Listings | `aryeo/resources/listings.py` | 7 |
-| Notes | `aryeo/resources/notes.py` | 1 |
-| Order Forms | `aryeo/resources/order_forms.py` | 2 |
-| Order Items | `aryeo/resources/order_items.py` | 4 |
-| Orders | `aryeo/resources/orders.py` | 6 |
-| Payroll | `aryeo/resources/payroll.py` | 2 |
-| Products | `aryeo/resources/products.py` | 5 |
-| Scheduling | `aryeo/resources/scheduling.py` | 9 |
-| Tags | `aryeo/resources/tags.py` | 12 |
-| Tasks | `aryeo/resources/tasks.py` | 7 |
-| Videos | `aryeo/resources/videos.py` | 3 |
+| Addresses | `aryeo/addresses.py` | 3 |
+| Appointments | `aryeo/appointments.py` | 12 |
+| Company Users | `aryeo/company_users.py` | 3 |
+| Customer Users | `aryeo/customer_users.py` | 8 |
+| Discounts | `aryeo/discounts.py` | 6 |
+| Listings | `aryeo/listings.py` | 7 |
+| Notes | `aryeo/notes.py` | 1 |
+| Order Forms | `aryeo/order_forms.py` | 2 |
+| Order Items | `aryeo/order_items.py` | 4 |
+| Orders | `aryeo/orders.py` | 6 |
+| Payroll | `aryeo/payroll.py` | 2 |
+| Products | `aryeo/products.py` | 5 |
+| Scheduling | `aryeo/scheduling.py` | 9 |
+| Tags | `aryeo/tags.py` | 12 |
+| Tasks | `aryeo/tasks.py` | 7 |
+| Videos | `aryeo/videos.py` | 3 |

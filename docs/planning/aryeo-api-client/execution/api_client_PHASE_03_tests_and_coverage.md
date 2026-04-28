@@ -1,6 +1,5 @@
-
 # API Client Phase 03 Tests And Coverage
 
-- Added unit tests for the base client, client wiring, and exception parsing.
-- Added a generated route smoke test that exercises each generated endpoint method.
-- Live integration tests remain blocked on non-production credentials.
+- Added one request-construction test module per resource.
+- Kept core transport, exception, client, and model/export tests.
+- Kept live integration checks opt-in.

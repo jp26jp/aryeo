@@ -8,7 +8,8 @@ When scaffolding or changing the client surface, keep `README.md`, `docs/`,
 `examples/`, and `tests/` synchronized with the same commands and supported
 Python versions.
 
-Use pytest with coverage on `aryeo`.
+Use pytest with coverage on `aryeo` and keep one test module per public
+resource module where practical.
 
 Docs must build with `mkdocs build --strict` before the work is considered
 ready.

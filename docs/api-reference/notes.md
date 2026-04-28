@@ -1,0 +1,3 @@
+# Notes
+
+::: aryeo.notes

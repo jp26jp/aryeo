@@ -7,6 +7,9 @@ alwaysApply: true
 Implement runtime code under `./aryeo/` and group endpoints by resource
 or service boundary.
 
+Use flat modules such as `aryeo/orders.py` as the primary resource surface.
+Keep `aryeo/resources/` as compatibility re-export modules only.
+
 Use Google-style docstrings and thorough type hints for Python files.
 
 Every endpoint or client change must update:
@@ -15,4 +18,5 @@ Every endpoint or client change must update:
 - examples under `./examples/` when user-facing usage changes
 - the owning planning docs under `docs/planning/aryeo-api-client/`
 
-Do not mark an endpoint complete until code, tests, docs, and status docs land.
+Do not mark an endpoint or model complete until code, tests, docs, examples,
+and status docs land.

@@ -1,6 +1,5 @@
-
 # API Client Phase 01 Foundation
 
-- Scaffolded package metadata, base transport, exceptions, and docs site config.
-- Chose `aryeo` as both the initial distribution and import package name.
-- Kept typed response models deferred to preserve honest status language.
+- Kept `httpx` transport in `aryeo/base_client.py`.
+- Kept Python `>=3.11` as an intentional ReZEN deviation.
+- Kept version sources in `pyproject.toml` and `aryeo/__init__.py`.

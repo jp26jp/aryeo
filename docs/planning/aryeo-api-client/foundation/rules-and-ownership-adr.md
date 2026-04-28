@@ -10,7 +10,10 @@
 
 - `aryeo/base_client.py` owns transport, auth, and error behavior.
 - `aryeo/client.py` owns resource bindings.
-- `aryeo/resources/` owns generated endpoint methods grouped by tag.
+- `aryeo/<resource>.py` owns generated endpoint methods by tag.
+- `aryeo/models.py` and `aryeo/enums.py` own generated schema
+  types.
+- `aryeo/resources/` owns compatibility re-exports only.
 
 ## Supporting Surfaces
 

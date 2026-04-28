@@ -1,20 +1,15 @@
 
 # Aryeo Python Client
 
-This project turns the checked-in Aryeo OpenAPI wrapper into a usable Python
-client baseline.
+This documentation is for the Python client library generated from the checked-in
+Aryeo API contract.
 
-## What Exists
+## What Is Included
 
-- 90 low-level resource methods generated from
-  `docs/api/aryeo.json`
-- shared auth, timeout, and error handling in `aryeo/base_client.py`
-- package reference pages backed by `mkdocstrings`
-- planning docs under `docs/planning/aryeo-api-client/`
+- 90 operations across 16 resource modules
+- Sync `httpx` transport with bearer-token auth
+- Generated models and enums from `docs/api/aryeo.json`
+- ReZEN-style docs, tests, and release hygiene
 
-## Where To Start
-
-- Read `docs/api/README.md` for the API contract summary.
-- Read `docs/reference/client.md` for the Python client surface.
-- Read `docs/planning/aryeo-api-client/execution/api-client-bootstrap-plan.md`
-  for the active implementation roadmap.
+Start with [Quickstart](getting-started/quickstart.md), then browse the
+[API Reference](api-reference/index.md).

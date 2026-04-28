@@ -1,1 +1,1 @@
-"""Test suite for the Aryeo Python client."""
+"""Test suite for Aryeo."""

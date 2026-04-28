@@ -5,9 +5,12 @@
 
 - Use Google-style docstrings on public modules, classes, and functions.
 - Prefer explicit, thorough type hints over `Any`.
-- Keep the shared HTTP behavior in `aryeo/base_client.py`.
-- Treat generated resource modules as low-level transport surfaces until typed
-  request and response models land.
+- Keep shared HTTP behavior in `aryeo/base_client.py`.
+- Keep flat resource modules such as `aryeo/orders.py` as the primary public
+  surface.
+- Keep `aryeo/resources/` as compatibility exports only.
+- Keep `aryeo/types.py` limited to transport-level aliases.
+- Generate models and enums from `docs/api/aryeo.json`; do not invent fields.
 
 ## Sync Rules
 

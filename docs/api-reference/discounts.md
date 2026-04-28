@@ -1,0 +1,3 @@
+# Discounts
+
+::: aryeo.discounts

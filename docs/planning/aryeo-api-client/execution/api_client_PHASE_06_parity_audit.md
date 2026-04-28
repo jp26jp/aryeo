@@ -1,5 +1,4 @@
-
 # API Client Phase 06 Parity Audit
 
-- Outstanding parity gaps are currently typed models, live contract tests, and publication wiring.
-- The current scaffold should be treated as low-level transport coverage, not complete semantic parity.
+- Full parity still requires endpoint-level model coercion proof.
+- Do not claim complete model coverage until docs, tests, and examples prove it.

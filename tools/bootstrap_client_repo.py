@@ -3456,23 +3456,9 @@ def build_generated_files(
 def main() -> None:
     """Generate the Aryeo client scaffold from the checked-in docs."""
 
-    args = parse_args()
-    spec = read_spec()
-    resource_groups, audit = build_resource_groups(spec)
+    from aryeo_rezen_codegen import run_from_cli
 
-    curated_files = build_curated_files(resource_groups, audit)
-    generated_files = build_generated_files(resource_groups)
-
-    for path, content in curated_files:
-        write_text(
-            path,
-            content,
-            overwrite=args.force_curated,
-            dry_run=args.dry_run,
-        )
-
-    for path, content in generated_files:
-        write_text(path, content, overwrite=True, dry_run=args.dry_run)
+    run_from_cli()
 
 
 if __name__ == "__main__":

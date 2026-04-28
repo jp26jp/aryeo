@@ -1,0 +1,3 @@
+# Listings
+
+::: aryeo.listings

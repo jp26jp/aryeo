@@ -1,0 +1,3 @@
+# Appointments
+
+::: aryeo.appointments
